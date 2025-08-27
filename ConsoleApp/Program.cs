@@ -4,6 +4,8 @@ var persona = new Personas();
 Personas persona1 = new Personas();
 Personas persona2 = new Estudiantes();
 
+IEstudiantes i_estudiante = new Estudiantes();
+
 persona.Id = 1;
 persona.Nombre = "Pepito Perez";
 persona.Activo = true;
@@ -25,6 +27,8 @@ public class Tipos
 {
     public int Id = 0;
     public String? Nombre = "";
+
+    public List<Personas> Personas = new List<Personas>();
 }
 
 public class VideoJuegos
@@ -44,7 +48,27 @@ public class Personas
     public List<VideoJuegos> VideoJuegos = new List<VideoJuegos>();
 }
 
-public class Estudiantes : Personas
+public interface IEstudiantes
+{
+    bool Utiles();
+}
+
+public class Estudiantes : Personas, IEstudiantes
 {
     public String? Carnet = "";
+
+    public bool Utiles()
+    {
+        return true;
+    }
+}
+
+public class EstudiantesItm : Personas, IEstudiantes
+{
+    public String? Carnet = "";
+
+    public bool Utiles()
+    {
+        return false;
+    }
 }
